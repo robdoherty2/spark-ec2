@@ -11,6 +11,7 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 # Dev tools
+sudo yum update -y
 sudo yum install -y java-1.7.0-openjdk-devel gcc gcc-c++ ant git
 # Perf tools
 sudo yum install -y dstat iotop strace sysstat htop perf
@@ -19,7 +20,10 @@ sudo debuginfo-install -q -y kernel
 sudo yum --enablerepo='*-debug*' install -q -y java-1.7.0-openjdk-debuginfo.x86_64
 
 # PySpark and MLlib deps
-sudo yum install -y  python-matplotlib python-tornado scipy libgfortran
+sudo yum install -y gcc-c++ python27-devel atlas-sse3-devel lapack-devel freetype-devel libpng-devel libgfortran
+curl https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py | sudo /usr/bin/python27
+#sudo yum install -y  python-matplotlib python-tornado scipy libgfortran
+
 # SparkR deps
 sudo yum install -y R
 # Other handy tools
